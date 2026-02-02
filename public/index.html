@@ -2,41 +2,188 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hello World Front Page</title>
+  <title>Contact Jack Maclavity</title>
   <style>
+    /* Global reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 3rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #000; /* deep black canvas */
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 4rem 2rem;
     }
+
     h1 {
-      color: #4a148c;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    #message {
-      margin-top: 2rem;
+
+    p {
       font-size: 1.2rem;
-      color: #333;
+      color: #ccc;
+      margin-bottom: 3rem;
+    }
+
+    .contact-btn {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .contact-btn:hover {
+      background: #333;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+      background: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      display: none; /* hidden until button clicked */
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #aaa;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    input, textarea {
+      margin-top: 0.5rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #222;
+      color: #fff;
+      outline: none;
+      transition: background 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      background: #333;
+    }
+
+    button.submit {
+      margin-top: 2rem;
+      background: linear-gradient(90deg, #fff, #999);
+      color: #000;
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button.submit:hover {
+      background: #444;
+      color: #fff;
+    }
+
+    .message-output {
+      margin-top: 2rem;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .message-output h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+    }
+
+    .message {
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      color: #ddd;
+    }
+
+    .message strong {
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Jack’s Site</h1>
-  <p>This page will show the output of our serverless function:</p>
-  <div id="message">Loading...</div>
+  <h1>Jack Maclavity</h1>
+  <p>Siem Reap • Friends & Listeners</p>
+
+  <button class="contact-btn" onclick="toggleForm()">Contact Jack</button>
+
+  <form id="contactForm" onsubmit="handleSubmit(event)">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" required placeholder="Enter your name" />
+
+    <label for="message">Your Message</label>
+    <textarea id="message" rows="4" required placeholder="Write your message..."></textarea>
+
+    <button type="submit" class="submit">Send Message</button>
+  </form>
+
+  <div class="message-output" id="output">
+    <h2>Messages</h2>
+    <p>No messages yet.</p>
+  </div>
 
   <script>
-    async function loadMessage() {
-      try {
-        const res = await fetch('/api/hello');
-        const data = await res.json();
-        document.getElementById('message').textContent = data.message;
-      } catch (err) {
-        document.getElementById('message').textContent = 'Error loading message';
-        console.error(err);
-      }
+    function toggleForm() {
+      const form = document.getElementById('contactForm');
+      form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
     }
-    loadMessage();
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if (!name || !msg) return;
+
+      const output = document.getElementById('output');
+      const p = document.createElement('div');
+      p.className = 'message';
+      p.innerHTML = `<strong>${name}:</strong> ${msg}`;
+      output.appendChild(p);
+
+      e.target.reset();
+    }
   </script>
 </body>
 </html>
