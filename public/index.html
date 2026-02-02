@@ -4,72 +4,72 @@
   <meta charset="UTF-8" />
   <title>Contact Jack Maclavity</title>
   <style>
-    /* Global reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #000; /* deep black canvas */
-      color: #fff;
+      background: linear-gradient(180deg, #000 0%, #111 20%, #222 40%, #333 60%, #444 80%, #555 100%);
+      color: #eee;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
       padding: 4rem 2rem;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 900;
-      letter-spacing: 2px;
       text-transform: uppercase;
+      letter-spacing: 3px;
       margin-bottom: 1rem;
-      background: linear-gradient(90deg, #fff, #aaa);
+      background: linear-gradient(90deg, #fff, #aaa, #666, #333);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: fadeIn 2s ease forwards;
     }
 
     p {
       font-size: 1.2rem;
-      color: #ccc;
+      color: #bbb;
       margin-bottom: 3rem;
+      animation: fadeIn 3s ease forwards;
     }
 
     .contact-btn {
-      background: #fff;
+      background: linear-gradient(135deg, #fff, #ccc, #999, #666);
       color: #000;
       border: none;
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       font-size: 1.2rem;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
 
     .contact-btn:hover {
-      background: #333;
+      background: linear-gradient(135deg, #333, #555, #777, #999);
       color: #fff;
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(255,255,255,0.4);
     }
 
     form {
       width: 100%;
-      max-width: 500px;
-      background: #111;
+      max-width: 600px;
+      background: linear-gradient(180deg, #111, #222, #333, #444);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
-      display: none; /* hidden until button clicked */
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      display: none;
       flex-direction: column;
+      animation: slideUp 1s ease forwards;
     }
 
     label {
@@ -85,21 +85,22 @@
       margin-top: 0.5rem;
       padding: 0.8rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 1rem;
       background: #222;
       color: #fff;
       outline: none;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     input:focus, textarea:focus {
       background: #333;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
     button.submit {
       margin-top: 2rem;
-      background: linear-gradient(90deg, #fff, #999);
+      background: linear-gradient(90deg, #fff, #ccc, #999, #666);
       color: #000;
       border: none;
       padding: 1rem;
@@ -109,37 +110,57 @@
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
 
     button.submit:hover {
-      background: #444;
+      background: linear-gradient(90deg, #444, #555, #777, #999);
       color: #fff;
+      box-shadow: 0 0 40px rgba(255,255,255,0.4);
     }
 
     .message-output {
-      margin-top: 2rem;
-      max-width: 500px;
+      margin-top: 3rem;
+      max-width: 600px;
       text-align: left;
+      animation: fadeIn 4s ease forwards;
     }
 
     .message-output h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #fff;
-      border-bottom: 1px solid #444;
+      border-bottom: 1px solid #555;
       padding-bottom: 0.5rem;
     }
 
     .message {
-      background: #222;
+      background: linear-gradient(135deg, #222, #333, #444, #555);
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-bottom: 1rem;
       color: #ddd;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .message:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
     }
 
     .message strong {
       color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
