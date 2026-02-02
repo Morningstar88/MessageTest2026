@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World from Vercel!</h1>
-    <p>This is a static front page. Do routes work?</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World Front Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 3rem;
+    }
+    h1 {
+      color: #4a148c;
+    }
+    #message {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Jack’s Site</h1>
+  <p>This page will show the output of our serverless function:</p>
+  <div id="message">Loading...</div>
+
+  <script>
+    async function loadMessage() {
+      try {
+        const res = await fetch('/api/hello');
+        const data = await res.json();
+        document.getElementById('message').textContent = data.message;
+      } catch (err) {
+        document.getElementById('message').textContent = 'Error loading message';
+        console.error(err);
+      }
+    }
+    loadMessage();
+  </script>
+</body>
 </html>
